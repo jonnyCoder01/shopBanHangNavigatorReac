@@ -12,6 +12,7 @@ export default class App extends Component {
   
     render() {
         return (
+           
             <Navigator 
                 initialRoute={{ name: 'MAIN' }}
                 renderScene={(route, navigator) => {
