@@ -5,18 +5,7 @@ import Menu from './Menu';
 import Shop from './Shop/Shop';
 
 export default class Main2 extends Component {
-    gotoAuthentication() {
-        const { navigator } = this.props;
-        navigator.push({ name: 'AUTHENTICATION' });
-    }
-    gotoChangeInfo() {
-        const { navigator } = this.props;
-        navigator.push({ name: 'CHANGE_INFO' });
-    }
-    gotoOrderHistory() {
-        const { navigator } = this.props;
-        navigator.push({ name: 'ORDER_HISTORY' });
-    }
+    
     closeControlPanel = () => {
         this.drawer.close();
     };
@@ -25,10 +14,11 @@ export default class Main2 extends Component {
     };
 
     render() {
+        const { navigator } = this.props;
         return (
             <Drawer
                 ref={(ref) => { this.drawer = ref; }}
-                content={<Menu />}
+                content={<Menu navigator={navigator} />}
                 openDrawerOffset={0.4}
                 tapToClose
             >
