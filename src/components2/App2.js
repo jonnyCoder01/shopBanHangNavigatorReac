@@ -8,21 +8,24 @@ import ChangeInfo2 from './ChangeInfo2/ChangeInfo2';
 StatusBar.setHidden(true);
 
 export default class App extends Component {
-  
+
     render() {
         return (
-           
-            <Navigator 
+
+            <Navigator
                 initialRoute={{ name: 'MAIN' }}
                 renderScene={(route, navigator) => {
                     switch (route.name) {
-                        case 'MAIN': return <Main2 navigator={navigator}/>;
-                        case 'CHANGE_INFO': return <ChangeInfo2 navigator={navigator}/>;
-                        case 'AUTHENTICATION': return <Authentication2 navigator={navigator}/>;
-                        default:  return <OrderHistory2 navigator={navigator} />;
+                        case 'MAIN': return <Main2 navigator={navigator} />;
+                        case 'CHANGE_INFO': return <ChangeInfo2 navigator={navigator} />;
+                        case 'AUTHENTICATION': return <Authentication2 navigator={navigator} />;
+                        default: return <OrderHistory2 navigator={navigator} />;
                     }
                 }}
-                
+                configureScene={route => {
+                    if (route.name === 'AUTHENTICATION') return Navigator.SceneConfigs.FloatFromRight; 
+                    return Navigator.SceneConfigs.FloatFromLeft;
+                }}
             />
         );
     }
