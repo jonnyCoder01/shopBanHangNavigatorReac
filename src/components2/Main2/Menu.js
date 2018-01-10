@@ -7,7 +7,7 @@ class Menu extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLogedIn: true,
+            isLogedIn: false,
         };
     }
     gotoAuthentication() {
@@ -28,10 +28,10 @@ class Menu extends Component {
         const { container, profileStyle, btnStyle, btnText, btnSignInStyle,
             btnTextSignIn, loginContainer, username } = styles;
         const logoutJSX = (
-            <View style={{flex: 1}}>
-                    <TouchableOpacity style={btnStyle}>
-                        <Text style={btnText} > Sign In </Text>
-                    </TouchableOpacity>
+            <View style={{ flex: 1 }}>
+                <TouchableOpacity style={btnStyle} onPress={this.gotoAuthentication.bind(this)} >
+                    <Text style={btnText} > Sign In </Text>
+                </TouchableOpacity>
             </View>
         );
 
@@ -39,13 +39,13 @@ class Menu extends Component {
             <View style={loginContainer}>
                 <Text style={username}> nguyen van pho </Text>
                 <View>
-                    <TouchableOpacity style={btnSignInStyle}>
+                    <TouchableOpacity style={btnSignInStyle} onPress={this.gotoOrderHistory.bind(this)} >
                         <Text style={btnTextSignIn} > Order History </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={btnSignInStyle}>
+                    <TouchableOpacity style={btnSignInStyle} onPress={this.gotoChangeInfo.bind(this)} >
                         <Text style={btnTextSignIn} > Change Info </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={btnSignInStyle}>
+                    <TouchableOpacity style={btnSignInStyle} >
                         <Text style={btnTextSignIn} > Sign out </Text>
                     </TouchableOpacity>
                 </View>
@@ -66,15 +66,18 @@ class Menu extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1, backgroundColor: '#29BB9C',
+        flex: 1, 
+        backgroundColor: '#29BB9C',
         borderRightWidth: 3,
         borderColor: '#fff',
         alignItems: 'center'
     },
     profileStyle: {
-        width: 120, height: 120, borderRadius: 60,
+        width: 120, 
+        height: 120, 
+        borderRadius: 60,
         marginBottom: 30,
-       
+
     },
     btnStyle: {
 
@@ -87,7 +90,8 @@ const styles = StyleSheet.create({
     },
     btnText: {
         color: '#29BB9C',
-        fontSize: 15
+        fontSize: 15,
+        fontFamily: 'Avenir'
     },
     btnSignInStyle: {
         height: 50,
@@ -104,15 +108,15 @@ const styles = StyleSheet.create({
     },
     loginContainer: {
         flex: 1,
-        justifyContent: 'space-between', 
-        alignItems: 'center' 
+        justifyContent: 'space-between',
+        alignItems: 'center'
     },
     username: {
-        color: '#fff', 
-        fontSize: 20, 
+        color: '#fff',
+        fontSize: 20,
         fontFamily: 'Avenir'
     }
-   
+
 });
 
 export default Menu;
