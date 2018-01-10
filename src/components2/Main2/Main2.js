@@ -13,6 +13,10 @@ export default class Main2 extends Component {
         this.drawer.open();
     };
 
+    componentDidMount() {
+        this.drawer.open();
+    }
+
     render() {
         const { navigator } = this.props;
         return (
