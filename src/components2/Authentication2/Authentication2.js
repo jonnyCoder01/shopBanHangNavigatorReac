@@ -7,38 +7,73 @@ import icBack from '../../media/appIcon/back_white.png';
 const { height } = Dimensions.get('window');
 
 export default class Authentication2 extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isSignIn: false,
+        };
+    }
+
     goBackToMain() {
         const { navigator } = this.props;
         navigator.pop();
     }
+
+    signIn() {
+        this.setState({ isSignIn: true });
+    }
+
+    signUp() {
+        this.setState({ isSignIn: false });
+    }
+
     render() {
         const { container, row1, controlStyle, iconStyle, titleStyle,
             signInStyle, signUpStyle, inactiveStyle, activeStyle,
             inputStyle, bigButtonStyle, buttonText } = styles;
+
+        const signInJSX = (
+            <View>
+                <TextInput style={inputStyle} placeholder="Enter your email" />
+                <TextInput style={inputStyle} placeholder="Enter your passworld" />
+                <TouchableOpacity style={bigButtonStyle} >
+                    <Text style={buttonText}> SIGN IN NOW</Text>
+                </TouchableOpacity>
+            </View>
+        );
+
+        const signUpJSX = (
+            <View>
+                <TextInput style={inputStyle} placeholder="Enter your name" />
+                <TextInput style={inputStyle} placeholder="Enter your email" />
+                <TextInput style={inputStyle} placeholder="Enter your passworld" />
+                <TextInput style={inputStyle} placeholder="Re-enter your passworld" />
+                <TouchableOpacity style={bigButtonStyle} >
+                    <Text style={buttonText}> SIGN UP NOW</Text>
+                </TouchableOpacity>
+            </View>
+        );
+
+        const mainJSX = this.state.isSignIn ? signInJSX : signUpJSX;
+
         return (
             <View style={container}>
                 <View style={row1}>
-                    <TouchableOpacity onPress={this.props.onOpen} >
+                    <TouchableOpacity onPress={this.goBackToMain.bind(this)} >
                         <Image style={iconStyle} source={icBack} />
                     </TouchableOpacity>
                     <Text style={titleStyle}> Wearing a Dress </Text>
                     <Image style={iconStyle} source={icLogo} />
                 </View>
-                
-                <View>
-                    <TextInput style={inputStyle} placeholder="Enter your email" />
-                    <TextInput style={inputStyle} placeholder="Enter your passworld" />
-                    <TouchableOpacity style={bigButtonStyle} >
-                        <Text style={buttonText}> SIGN IN NOW</Text>
-                    </TouchableOpacity>
-                </View>
+
+                {mainJSX}
 
                 <View style={controlStyle} >
-                    <TouchableOpacity style={signInStyle} >
-                        <Text style={activeStyle}> SIGN IN </Text>
+                    <TouchableOpacity style={signInStyle} onPress={this.signIn.bind(this)} >
+                        <Text style={this.state.isSignIn ? activeStyle : inactiveStyle}> SIGN IN </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={signUpStyle} >
-                        <Text style={inactiveStyle} > SIGN UP </Text>
+                    <TouchableOpacity style={signUpStyle} onPress={this.signUp.bind(this)} >
+                        <Text style={this.state.isSignIn ? inactiveStyle : activeStyle}> SIGN UP </Text>
                     </TouchableOpacity>
 
                 </View>

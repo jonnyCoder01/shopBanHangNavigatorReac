@@ -9,7 +9,7 @@ class Home extends Component {
   
     render() {
         return (
-           <ScrollView style={{ flex: 1, backgroundColor: '#D2D4D2', marginBottom: 100 }}>
+           <ScrollView style={{ flex: 1, backgroundColor: '#D2D4D2', marginBottom: 30 }}>
                 
                     <Collection />
                     <Category />
