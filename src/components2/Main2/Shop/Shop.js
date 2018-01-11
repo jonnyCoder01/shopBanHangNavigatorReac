@@ -32,6 +32,13 @@ class Shop extends Component {
             selectedTab: 'home'
         };
     }
+
+    componentDidMount() {
+        fetch('http://192.168.2.11/api')
+        .then(res => res.json())
+        .then(resJSON => console.log(resJSON));
+    }
+
     openMenu() {
         const { open } = this.props;
         open();
