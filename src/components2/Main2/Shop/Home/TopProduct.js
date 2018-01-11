@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Image, Dimensions, TouchableOpacity } from 'react-native';
 
 import sp1 from '../../../../media/temp/sp1.jpeg';
 import sp2 from '../../../../media/temp/sp2.jpeg';
@@ -7,10 +7,15 @@ import sp3 from '../../../../media/temp/sp3.jpeg';
 import sp4 from '../../../../media/temp/sp4.jpeg';
 
 export default class TopProduct extends Component {
-    
+
+    gotoDetail() {
+        const { navigator } = this.props;
+        navigator.push({ name: 'PRODUCT_DETAIL' });
+    }
+
     render() {
-        const {container, titleContainer, body, title, productContainer,
-            productImage, productName, productPrice  } = styles;
+        const { container, titleContainer, body, title, productContainer,
+            productImage, productName, productPrice } = styles;
         return (
             <View style={container} >
                 <View style={titleContainer} >
@@ -18,29 +23,29 @@ export default class TopProduct extends Component {
                 </View>
 
                 <View style={body} >
-                    <View style={productContainer} >
-                        <Image source={sp1} style={productImage} /> 
+                    <TouchableOpacity style={productContainer} onPress={this.gotoDetail.bind(this)} >
+                        <Image source={sp1} style={productImage} />
                         <Text style={productName} > PRODUCT NAME </Text>
                         <Text style={productPrice} > 300$ </Text>
-                    </View>
-                    <View style={productContainer} >
-                        <Image source={sp2} style={productImage} /> 
+                    </TouchableOpacity>
+                    <TouchableOpacity style={productContainer} onPress={this.gotoDetail.bind(this)} >
+                        <Image source={sp2} style={productImage} />
                         <Text style={productName} > PRODUCT NAME </Text>
                         <Text style={productPrice} > 250$ </Text>
-                    </View>
+                    </TouchableOpacity>
 
                     <View style={{ height: 10, width }} />
-                    
-                    <View style={productContainer} >
-                        <Image source={sp3} style={productImage} /> 
+
+                    <TouchableOpacity style={productContainer} onPress={this.gotoDetail.bind(this)} >
+                        <Image source={sp3} style={productImage} />
                         <Text style={productName} > PRODUCT NAME </Text>
                         <Text style={productPrice} > 300$ </Text>
-                    </View>
-                    <View style={productContainer} >
-                        <Image source={sp4} style={productImage} /> 
+                    </TouchableOpacity>
+                    <TouchableOpacity style={productContainer} onPress={this.gotoDetail.bind(this)} >
+                        <Image source={sp4} style={productImage} />
                         <Text style={productName} > PRODUCT NAME </Text>
                         <Text style={productPrice} > 250$ </Text>
-                    </View>
+                    </TouchableOpacity>
                 </View>
             </View>
         );
@@ -48,15 +53,15 @@ export default class TopProduct extends Component {
 }
 
 const { width } = Dimensions.get('window');
-const productWidth = (width - 50) / 2 ;
-const productHeight = (productWidth / 361) * 452 ;
+const productWidth = (width - 50) / 2;
+const productHeight = (productWidth / 361) * 452;
 
 const styles = StyleSheet.create({
     container: {
-        margin: 10, 
+        margin: 10,
         backgroundColor: '#fff',
         shadowColor: 'yellow',
-        shadowOffset: {width: 0, height: 20},
+        shadowOffset: { width: 0, height: 20 },
 
     },
     titleContainer: {
@@ -70,15 +75,15 @@ const styles = StyleSheet.create({
 
     },
     body: {
-       flexDirection: 'row',
-       justifyContent: 'space-around',
-       flexWrap: 'wrap'
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        flexWrap: 'wrap'
     },
     productContainer: {
         width: productWidth,
         paddingBottom: 10,
-        
-      
+
+
     },
     productImage: {
         width: productWidth,
@@ -88,7 +93,7 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         fontFamily: 'Avenir',
         color: '#662F90'
-    }, 
+    },
     productName: {
         paddingLeft: 10,
         fontFamily: 'Avenir',
