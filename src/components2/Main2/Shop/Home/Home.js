@@ -10,7 +10,7 @@ class Home extends Component {
     render() {
         return (
             <Navigator
-                initialRoute={{ name: 'HOME_VIEW' }}
+                initialRoute={{ name: 'LIST_PRODUCT' }}
                 renderScene={(route, navigator) => {
                     switch (route.name) {
                         case 'HOME_VIEW': return <HomeView navigator={navigator} />;
