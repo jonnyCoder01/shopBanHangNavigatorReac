@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     },
     textInput: {
         height: height / 23, backgroundColor: 'white', marginTop: 5,
-        paddingLeft: 10,
+        paddingLeft: 10, paddingVertical: 0,
     },
     iconStyle: { width: 25, height: 25 },
     titleStyle: { color: '#fff', fontFamily: 'Avenir', fontSize: 20 }
