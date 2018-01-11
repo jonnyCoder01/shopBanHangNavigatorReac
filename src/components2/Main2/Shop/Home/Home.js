@@ -8,12 +8,13 @@ import ProductDetail from '../ProductDetail/ProductDetail';
 class Home extends Component {
 
     render() {
+        const { types } = this.props;
         return (
             <Navigator
-                initialRoute={{ name: 'LIST_PRODUCT' }}
+                initialRoute={{ name: 'HOME_VIEW' }}
                 renderScene={(route, navigator) => {
                     switch (route.name) {
-                        case 'HOME_VIEW': return <HomeView navigator={navigator} />;
+                        case 'HOME_VIEW': return <HomeView navigator={navigator} types={types} />;
                         case 'LIST_PRODUCT': return <ListProduct navigator={navigator} />;
                         default: return <ProductDetail navigator={navigator} />;
                     }

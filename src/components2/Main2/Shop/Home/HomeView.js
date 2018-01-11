@@ -8,11 +8,12 @@ import TopProduct from './TopProduct';
 class Home extends Component {
 
     render() {
+        const { types } = this.props;
         return (
             <ScrollView style={{ flex: 1, backgroundColor: '#D2D4D2', marginBottom: 30 }}>
 
                 <Collection />
-                <Category navigator={this.props.navigator} />
+                <Category navigator={this.props.navigator} types={types} />
                 <TopProduct navigator={this.props.navigator} />
 
             </ScrollView>
