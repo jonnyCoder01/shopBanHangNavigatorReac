@@ -30,17 +30,20 @@ class Shop extends Component {
         super(props);
         this.state = {
             selectedTab: 'home',
-            types: []
+            types: [],
+            topProducts: [],
+            cartArray: [1,2,3],
         };
     }
 
     componentDidMount() {
-        fetch('http://192.168.2.11/api')
+        fetch('http://192.168.99.2/api')
             .then(res => res.json())
             .then(resJSON => {
-                const { type } = resJSON;
+                const { type, product } = resJSON;
                 this.setState({
-                    types: type
+                    types: type,
+                    topProducts: product
                 });
             });
     }
@@ -52,7 +55,7 @@ class Shop extends Component {
 
     render() {
         const { iconStyle } = styles;
-        const { types, selectedTab } = this.state;
+        const { types, selectedTab, topProducts, cartArray } = this.state;
 
         return (
             <View style={{ flex: 1 }}>
@@ -70,7 +73,7 @@ class Shop extends Component {
                         selectedTitleStyle={{ color: 'red', fontSize: 12, fontFamily: 'sans-serif', fontWeight: 'bold' }}
                     >
 
-                        <Home types={types} />
+                        <Home types={types} topProducts={topProducts} />
                     </TabNavigator.Item>
                     <TabNavigator.Item
                         selected={selectedTab === 'cart'}
@@ -79,7 +82,7 @@ class Shop extends Component {
                         renderSelectedIcon={() => <Image source={cartIconS} style={iconStyle} />}
                         badgeText="1"
                         onPress={() => this.setState({ selectedTab: 'cart' })}>
-                        <Cart />
+                        <Cart cartArray= {cartArray} />
                     </TabNavigator.Item>
                     <TabNavigator.Item
                         selected={selectedTab === 'search'}

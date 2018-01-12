@@ -8,7 +8,7 @@ import partyIcon from '../../../../media/temp/party.jpg';
 
 
 const { height, width } = Dimensions.get('window');
-const url = 'http://192.168.2.11/api/images/type/';
+const url = 'http://192.168.99.2/api/images/type/';
 
 export default class Categoty extends Component {
 
