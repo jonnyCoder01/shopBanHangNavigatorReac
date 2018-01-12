@@ -3,6 +3,7 @@ import {
     View, Text, StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity 
 } from 'react-native';
 
+import global from '../../../global';
 import img1 from '../../../../media/temp/sp5.jpeg';
 import img2 from '../../../../media/temp/sp4.jpeg';
 
@@ -18,6 +19,12 @@ export default class ProductDetail extends Component {
         const { navigator } = this.props;
         navigator.pop();
     }
+
+    addThisProductToCart() {
+        const { product } = this.props;
+        global.addProductToCart(product);
+    }
+
     render() {
         const {
             wrapper, cardStyle, header,
@@ -36,7 +43,7 @@ export default class ProductDetail extends Component {
                         <TouchableOpacity onPress={this.goBack.bind(this)}>
                             <Image style={backStyle} source={back} />
                         </TouchableOpacity>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={this.addThisProductToCart.bind(this)} >
                             <Image style={cartStyle} source={cart} />
                         </TouchableOpacity>
                     </View>

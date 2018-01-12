@@ -11,6 +11,8 @@ import Cart from './Cart/Cart';
 import Search from './Search/Search';
 import Header from './Header';
 
+import global from '../../../components2/global';
+
 import homeIconS from '../../../media/appIcon/home.png';
 import homeIcon from '../../../media/appIcon/home0.png';
 
@@ -32,9 +34,12 @@ class Shop extends Component {
             selectedTab: 'home',
             types: [],
             topProducts: [],
-            cartArray: [1,2,3],
+            cartArray: [],
         };
+        global.addProductToCart = this.addProductToCart.bind(this);
     }
+
+    
 
     componentDidMount() {
         fetch('http://192.168.99.2/api')
@@ -46,6 +51,10 @@ class Shop extends Component {
                     topProducts: product
                 });
             });
+    }
+
+    addProductToCart(product) {
+        this.setState({ cartArray: this.state.cartArray.concat(product)});
     }
 
     openMenu() {
@@ -80,7 +89,7 @@ class Shop extends Component {
                         title="Cart"
                         renderIcon={() => <Image source={cartIcon} style={iconStyle} />}
                         renderSelectedIcon={() => <Image source={cartIconS} style={iconStyle} />}
-                        badgeText="1"
+                        badgeText={cartArray.length}
                         onPress={() => this.setState({ selectedTab: 'cart' })}>
                         <Cart cartArray= {cartArray} />
                     </TabNavigator.Item>
